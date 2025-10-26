@@ -80,7 +80,7 @@ app.post("/api/alertas", async (req, res) => {
   try {
     const { matricula, mensagem, criado_por, ativo } = req.body;
     const result = await pool.query(
-      "INSERT INTO alertas (matricula, mensagem, criado_por, ativo) VALUES ($1,$2,$3,$4) RETURNING *",
+      "INSERT INTO alertas (matricula, mensagem, ativo) VALUES ($1,$2,$3) RETURNING *",
       [matricula, mensagem, criado_por || null, ativo ?? true]
     );
     res.json(result.rows[0]);
